@@ -16,6 +16,15 @@ const {
 
 const { generateToken, verifyToken } = require("./token.handlers");
 
+const {
+  createLink,
+  updateLink,
+  increaseLinkClicks,
+  updateToggle,
+  increaseUsersClicksByMyLinkTree,
+  increaseUsersClicksByUsername,
+} = require("./links.handle");
+
 module.exports = {
   // User
   getUser,
@@ -32,4 +41,11 @@ module.exports = {
   // Token
   generateToken,
   verifyToken,
+  // Link
+  createLink,
+  updateLink,
+  increaseLinkClicks,
+  updateToggle,
+  increaseUsersClicksByMyLinkTree,
+  increaseUsersClicksByUsername,
 };

@@ -2,6 +2,7 @@ const router = require("express").Router();
 
 const {
   getUsers,
+  getUser,
   createUser,
   checkNotIncludeBadCharaters,
   verifyPassword,
@@ -21,6 +22,17 @@ router.get("/", async (req, res) => {
     return res.status(200).json({ message: "users here", users: users });
   } catch (error) {
     return res.status(500).send(error.message);
+  }
+});
+
+router.get("/user", checkUserLoggedIn, async (req, res) => {
+  try {
+    const user = await getUser(req.user_id);
+    user.password = undefined;
+
+    return res.status(200).json({ user: user });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
   }
 });
 
@@ -57,9 +69,9 @@ router.post("/update", checkUserLoggedIn, async (req, res) => {
     const oldValues = await updateUserLinkTree(req.user_id, myLinkTree);
     return res.json({ message: "Updated" });
   } catch (error) {
+    return res.status(400).json({ message: "Error" });
     throw error;
   }
-  // return res.json({ message: "Update route" });
 });
 
 // METH		POST /users/login

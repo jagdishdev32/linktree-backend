@@ -4,18 +4,42 @@ const { verifyToken } = require("./token.handlers");
 
 module.exports = {
   getUsers: async () => {
-    const users = await User.find();
-
-    return users;
+    try {
+      const users = await User.find();
+      return users;
+    } catch (error) {
+      throw error;
+    }
   },
   getUser: async (id) => {
-    const user = await User.findById(id);
-
-    return user;
+    try {
+      const user = await User.findById(id);
+      return user;
+    } catch (error) {
+      throw error;
+    }
   },
   getUserByUsername: async (username) => {
-    const user = await User.find({ username: username });
-    return user;
+    try {
+      const user = await User.find({ username: username });
+      return user;
+    } catch (error) {
+      throw error;
+    }
+  },
+  getUserDetailsByMyLinkTree: async (myLinkTree) => {
+    try {
+      const users = await User.find({ myLinkTree });
+
+      // Hidding important credentials
+      users[0].password = undefined;
+
+      //TODO filter non toggle links too
+
+      return users[0];
+    } catch (error) {
+      throw error;
+    }
   },
   createUser: async (username, password, myLinkTree) => {
     try {

@@ -1,5 +1,5 @@
 const express = require("express");
-// const cors = require("cors");
+const cors = require("cors");
 const mongoose = require("mongoose");
 
 // Enabling Environment Variables from .env file
@@ -16,7 +16,7 @@ const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 // Enabling Json Parse Support
-// app.use(cors());
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -26,7 +26,9 @@ app.get("/", (req, res) => {
 
 // Routes
 const usersRoute = require("./routes/users.route");
+const linksRoute = require("./routes/links.route");
 
 app.use("/users", usersRoute);
+app.use("/links", linksRoute);
 
 module.exports = app;

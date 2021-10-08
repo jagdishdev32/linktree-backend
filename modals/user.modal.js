@@ -8,7 +8,7 @@ const FRONTEND_URL = process.env.FRONTEND_URL
   : "http://localhost:3000/";
 
 const linkSchema = new Schema({
-  title: { type: String, min: 0, max: 200 },
+  title: { type: String, min: 0, max: 200, required: true },
   url: { type: String, min: 0, max: 500 },
   toggle: { type: Boolean, default: DEFUALT_TOGGLE },
   clicks: { type: Number, default: 0 },
