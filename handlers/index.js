@@ -23,6 +23,7 @@ const {
   updateToggle,
   increaseUsersClicksByMyLinkTree,
   increaseUsersClicksByUsername,
+  deleteLink,
 } = require("./links.handle");
 
 module.exports = {
@@ -48,4 +49,5 @@ module.exports = {
   updateToggle,
   increaseUsersClicksByMyLinkTree,
   increaseUsersClicksByUsername,
+  deleteLink,
 };

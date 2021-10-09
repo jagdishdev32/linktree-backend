@@ -117,4 +117,22 @@ module.exports = {
       throw error;
     }
   },
+  deleteLink: async (user_id, link_id) => {
+    try {
+      const oldLink = await User.updateOne(
+        { _id: user_id, "links._id": link_id },
+        {
+          $pull: {
+            links: {
+              _id: link_id,
+            },
+          },
+        }
+      );
+
+      return oldLink;
+    } catch (error) {
+      throw error;
+    }
+  },
 };
