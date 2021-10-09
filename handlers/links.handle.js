@@ -118,8 +118,10 @@ module.exports = {
     }
   },
   deleteLink: async (user_id, link_id) => {
+    // deleteLink: async (link_id) => {
     try {
       const oldLink = await User.updateOne(
+        // { _id: user_id, "links._id": link_id },
         { _id: user_id, "links._id": link_id },
         {
           $pull: {

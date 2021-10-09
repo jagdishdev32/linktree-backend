@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+const themesList = require("../data/themesList.js");
+
 const DEFAULT_THEME = process.env.DEFAULT_THEME || "default";
 const DEFUALT_TOGGLE = process.env.DEFUALT_TOGGLE == "true" ? true : false;
 const FRONTEND_URL = process.env.FRONTEND_URL
@@ -20,7 +22,7 @@ const userSchema = new Schema({
   myLinkTree: { type: String, min: 3, max: 300, required: true, unique: true },
   clicks: { type: Number, default: 0 },
   // theme Could be number or name
-  theme: { type: String, default: DEFAULT_THEME },
+  theme: { type: String, default: DEFAULT_THEME, enum: themesList },
   links: [linkSchema],
   creationDate: { type: Date, default: Date.now },
 });

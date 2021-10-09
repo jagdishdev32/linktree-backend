@@ -5,6 +5,7 @@ const {
   checkUserLoggedIn,
   deleteAllUsers,
   updateUserLinkTree,
+  updateTheme,
 } = require("./users.handlers");
 
 const {
@@ -34,6 +35,7 @@ module.exports = {
   checkUserLoggedIn,
   deleteAllUsers,
   updateUserLinkTree,
+  updateTheme,
   // Common
   hashPassword,
   verifyPassword,

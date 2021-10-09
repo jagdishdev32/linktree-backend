@@ -128,11 +128,10 @@ router.put("/clicks", async (req, res) => {
   }
 });
 
-// METH		DELETE /links/
+// METH		POST /links/delete
 // DESC		Delete link
 // ACCESS	private
 router.delete("/", checkUserLoggedIn, async (req, res) => {
-  // router.get("/delete", async (req, res) => {
   const { id } = req.body;
 
   if (!id) {
@@ -140,8 +139,7 @@ router.delete("/", checkUserLoggedIn, async (req, res) => {
   }
 
   try {
-    // const newLink = await deleteLinkbyId(req.user_id, id);
-    const newLink = await deleteLink(id);
+    const newLink = await deleteLink(req.user_id, id);
     return res.status(201).json({ message: "Link Deleted", newLink });
   } catch (error) {
     return res.status(400).json({ message: error.message });

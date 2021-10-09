@@ -94,4 +94,16 @@ module.exports = {
       throw error;
     }
   },
+  updateTheme: async (user_id, theme) => {
+    try {
+      await User.findByIdAndUpdate(user_id, {
+        $set: {
+          theme: theme,
+        },
+      });
+      return { message: "theme updated" };
+    } catch (error) {
+      throw error;
+    }
+  },
 };

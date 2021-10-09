@@ -10,6 +10,7 @@ const {
   deleteAllUsers,
   checkUserLoggedIn,
   updateUserLinkTree,
+  updateTheme,
 } = require("../handlers");
 const { getUserByUsername } = require("../handlers/users.handlers");
 
@@ -123,5 +124,29 @@ if (process.env.DELETE_ENABLED == "true") {
     return res.json({ message: "Deleted" });
   });
 }
+
+// METH		PUT /users/themes
+// DESC		delete all users
+// ACCESS	Private
+router.put("/themes", checkUserLoggedIn, async (req, res) => {
+  // router.get("/themes", async (req, res) => {
+  try {
+    const { theme } = req.body;
+    const user_id = req.user_id;
+
+    // const user_id = "61608f73bcfae1c8de4cd942";
+    // const theme = "dark";
+
+    if (!theme) {
+      return res.status(400).json({ message: "theme required" });
+    }
+
+    const user = await updateTheme(user_id, theme);
+
+    return res.status(201).json({ message: "Theme Updated", user });
+  } catch (error) {
+    return res.status(400).json({ message: error.message });
+  }
+});
 
 module.exports = router;
